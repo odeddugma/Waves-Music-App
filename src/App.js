@@ -5,12 +5,12 @@ import "./styles/app.scss";
 import Player from "./components/Player";
 import Song from "./components/Song";
 // Import Utils
-import data from "./util";
+import data from "./data";
 
 function App() {
 	// State
 	const [songs, setSongs] = useState(data());
-	const [currentSong, setCurrentSong] = useState(songs[1]);
+	const [currentSong, setCurrentSong] = useState(songs[6]);
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	return (
