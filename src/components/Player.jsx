@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPlay,
@@ -7,11 +7,14 @@ import {
 	faPause,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
-	const { audio } = currentSong;
-	// Ref
-	const audioRef = useRef(null);
-
+const Player = ({
+	currentSong,
+	isPlaying,
+	setIsPlaying,
+	audioRef,
+	songInfo,
+	setSongInfo,
+}) => {
 	// Events Handlers
 	const playSongHandler = () => {
 		if (isPlaying) {
@@ -21,24 +24,14 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 		}
 		setIsPlaying(!isPlaying);
 	};
-	const timeUpdateHandler = (e) => {
-		const currentTime = e.target.currentTime;
-		const duration = e.target.duration;
-		setSongInfo({ ...songInfo, currentTime, duration });
-	};
-	const dragHandler = (e) => {
+
+	const progressbarDragHandler = (e) => {
 		audioRef.current.currentTime = e.target.value;
 		setSongInfo({ ...songInfo, currentTime: e.target.value });
 	};
 
 	const getTime = (time) =>
 		Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2);
-
-	// State
-	const [songInfo, setSongInfo] = useState({
-		currentTime: 0,
-		duration: null,
-	});
 
 	return (
 		<div className="player-container">
@@ -49,7 +42,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 					min={0}
 					max={songInfo.duration}
 					value={songInfo.currentTime}
-					onChange={dragHandler}
+					onChange={progressbarDragHandler}
 				/>
 				<p>{getTime(songInfo.duration)}</p>
 			</div>
@@ -67,12 +60,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 					icon={faAngleRight}
 				/>
 			</div>
-			<audio
-				src={audio}
-				ref={audioRef}
-				onLoadedMetadata={timeUpdateHandler}
-				onTimeUpdate={timeUpdateHandler}
-			/>
 		</div>
 	);
 };

@@ -1,9 +1,10 @@
-const LibrarySong = ({ song, songs, setCurrentSong }) => {
+const LibrarySong = ({ song, songs, setCurrentSong, audioRef }) => {
 	const { id, cover, name, artist } = song;
 
 	// Events Handlers
 	const songSelectHandler = () => {
 		setCurrentSong(song);
+		audioRef.current.play();
 	};
 	return (
 		<div className="library-song-container" onClick={songSelectHandler}>
