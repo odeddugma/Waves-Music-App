@@ -8,7 +8,11 @@ const LibrarySong = ({ song, songs, setCurrentSong, audioRef, isPlaying }) => {
 		if (isPlaying) {
 			const playPromise = audioRef.current.play();
 			if (playPromise !== undefined) {
-				playPromise.then(() => audioRef.current.play());
+				playPromise
+					.then(() => {
+						audioRef.current.play();
+					})
+					.catch((e) => console.log(e));
 			}
 		}
 	};
