@@ -1,7 +1,7 @@
 // Import Components
 import LibrarySong from "./LibrarySong";
 
-const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
+const Library = ({ songs, setSongs, setCurrentSong, audioRef, isPlaying }) => {
 	return (
 		<div className="library-container">
 			<h2>Library</h2>
@@ -11,6 +11,7 @@ const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
 						key={song.id}
 						song={song}
 						songs={songs}
+						setSongs={setSongs}
 						setCurrentSong={setCurrentSong}
 						audioRef={audioRef}
 						isPlaying={isPlaying}
