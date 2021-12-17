@@ -15,7 +15,7 @@ function App() {
 	const [currentSong, setCurrentSong] = useState(songs[0]);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [songInfo, setSongInfo] = useState({ currentTime: 0, duration: 100 });
-	const [libraryStatus, setLibraryStatus] = useState(false);
+	const [libraryStatus, setLibraryStatus] = useState(true);
 	// Ref
 	const audioRef = useRef(null);
 	// Events Handlers
