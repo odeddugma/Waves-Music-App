@@ -1,3 +1,5 @@
+import { playAudio } from "../util";
+
 const LibrarySong = ({
 	song,
 	songs,
@@ -17,17 +19,7 @@ const LibrarySong = ({
 			else return { ...el, active: false };
 		});
 		setSongs(newSongs);
-		// Check if the song is playing
-		if (isPlaying) {
-			const playPromise = audioRef.current.play();
-			if (playPromise !== undefined) {
-				playPromise
-					.then(() => {
-						audioRef.current.play();
-					})
-					.catch((e) => console.log(e));
-			}
-		}
+		playAudio(isPlaying, audioRef);
 	};
 
 	return (

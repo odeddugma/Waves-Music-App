@@ -6,6 +6,7 @@ import {
 	faAngleRight,
 	faPause,
 } from "@fortawesome/free-solid-svg-icons";
+import { playAudio } from "../util";
 
 const Player = ({
 	currentSong,
@@ -25,7 +26,7 @@ const Player = ({
 			else return { ...el, active: false };
 		});
 		setSongs(newSongs);
-	});
+	}, [currentSong]);
 	// Events Handlers
 	const playSongHandler = () => {
 		if (isPlaying) {
@@ -51,6 +52,7 @@ const Player = ({
 				setCurrentSong(songs[songs.length - 1]);
 			else setCurrentSong(songs[(currentSongIndex - 1) % songs.length]);
 		}
+		playAudio(isPlaying, audioRef);
 	};
 
 	const getTime = (time) =>
@@ -67,7 +69,7 @@ const Player = ({
 					value={songInfo.currentTime}
 					onChange={progressbarDragHandler}
 				/>
-				<p>{getTime(songInfo.duration)}</p>
+				<p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
 			</div>
 			<div className="play-control">
 				<FontAwesomeIcon
