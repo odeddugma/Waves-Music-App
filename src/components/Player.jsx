@@ -27,6 +27,7 @@ const Player = ({
 		});
 		setSongs(newSongs);
 	}, [currentSong]);
+
 	// Events Handlers
 	const playSongHandler = () => {
 		if (isPlaying) {
@@ -55,6 +56,14 @@ const Player = ({
 		playAudio(isPlaying, audioRef);
 	};
 
+	// Add styles
+	const trackAnimation = {
+		transform: `translateX(${songInfo.animationPercentage}%)`,
+	};
+	const background = {
+		background: `linear-gradient(to right, ${currentSong.color[0]},${currentSong.color[1]}`,
+	};
+
 	const getTime = (time) =>
 		Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2);
 
@@ -62,13 +71,16 @@ const Player = ({
 		<div className="player-container">
 			<div className="time-control">
 				<p>{getTime(songInfo.currentTime)}</p>
-				<input
-					type="range"
-					min={0}
-					max={songInfo.duration || 0}
-					value={songInfo.currentTime}
-					onChange={progressbarDragHandler}
-				/>
+				<div className="track" style={background}>
+					<input
+						type="range"
+						min={0}
+						max={songInfo.duration || 0}
+						value={songInfo.currentTime}
+						onChange={progressbarDragHandler}
+					/>
+					<div className="animate-track" style={trackAnimation}></div>
+				</div>
 				<p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
 			</div>
 			<div className="play-control">

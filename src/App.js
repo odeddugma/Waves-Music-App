@@ -14,15 +14,30 @@ function App() {
 	const [songs, setSongs] = useState(songsList());
 	const [currentSong, setCurrentSong] = useState(songs[0]);
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [songInfo, setSongInfo] = useState({ currentTime: 0, duration: 100 });
-	const [libraryStatus, setLibraryStatus] = useState(true);
+	const [songInfo, setSongInfo] = useState({
+		currentTime: 0,
+		duration: 100,
+		animationPercentage: 0,
+	});
+	const [libraryStatus, setLibraryStatus] = useState(false);
 	// Ref
 	const audioRef = useRef(null);
 	// Events Handlers
 	const timeUpdateHandler = (e) => {
 		const currentTime = e.target.currentTime;
 		const duration = e.target.duration;
-		setSongInfo({ ...songInfo, currentTime, duration });
+		// Calculate percentage
+		const roundedCurrentTime = Math.ceil(currentTime);
+		const roundedDuration = Math.ceil(duration);
+		const calcAnimationPercentage = Math.ceil(
+			(roundedCurrentTime / roundedDuration) * 100
+		);
+		setSongInfo({
+			...songInfo,
+			currentTime,
+			duration,
+			animationPercentage: calcAnimationPercentage,
+		});
 	};
 
 	return (
