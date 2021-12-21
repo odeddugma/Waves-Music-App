@@ -39,6 +39,13 @@ function App() {
 			animationPercentage: calcAnimationPercentage,
 		});
 	};
+	const songEndHandler = async () => {
+		let currentSongIndex = songs.findIndex(
+			(song) => song.id === currentSong.id
+		);
+		await setCurrentSong(songs[(currentSongIndex + 1) % songs.length]);
+		if (isPlaying) audioRef.current.play();
+	};
 
 	return (
 		<div className="App">
@@ -68,6 +75,7 @@ function App() {
 				ref={audioRef}
 				onLoadedMetadata={timeUpdateHandler}
 				onTimeUpdate={timeUpdateHandler}
+				onEnded={songEndHandler}
 			/>
 		</div>
 	);
