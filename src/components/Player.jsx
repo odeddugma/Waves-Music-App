@@ -72,12 +72,15 @@ const Player = ({
 			<div className="time-control">
 				<p>{getTime(songInfo.currentTime)}</p>
 				<div className="track" style={background}>
+					{/* Accessibility */}
+					<label htmlFor="scrollbar"></label>
 					<input
 						type="range"
 						min={0}
 						max={songInfo.duration || 0}
 						value={songInfo.currentTime}
 						onChange={progressbarDragHandler}
+						id="scrollbar"
 					/>
 					<div className="animate-track" style={trackAnimation}></div>
 				</div>
