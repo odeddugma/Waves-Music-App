@@ -20,3 +20,17 @@ nav {
 		}
 	}
 }
+
+// Tablets
+/* @media screen and (max-width: 768px) {
+
+} */
+
+// Phones
+@media screen and (max-width: 578px) {
+	nav {
+		button {
+			z-index: 10;
+		}
+	}
+}

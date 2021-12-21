@@ -4,17 +4,33 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
 	img {
 		width: 20%;
 		border-radius: 50%;
 		margin-top: 2rem;
 	}
-
 	h2 {
 		padding: 3rem 1rem 1rem 1rem;
 	}
 	h3 {
 		font-size: 1rem;
+	}
+}
+
+// Tablets
+@media screen and (max-width: 768px) {
+	.song-container {
+		img {
+			width: 40%;
+		}
+	}
+}
+
+// Phones
+@media screen and (max-width: 578px) {
+	.song-container {
+		img {
+			width: 60%;
+		}
 	}
 }

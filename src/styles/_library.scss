@@ -71,3 +71,15 @@
 	transform: translateX(0%);
 	opacity: 1;
 }
+
+// Tablets
+/* @media screen and (max-width: 768px) {
+
+} */
+
+// Phones
+@media screen and (max-width: 578px) {
+	.library-container {
+		width: 100%;
+	}
+}
