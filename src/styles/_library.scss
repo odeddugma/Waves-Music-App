@@ -10,27 +10,23 @@
 	transform: translateX(-100%);
 	transition: all 0.5s ease;
 	opacity: 0;
-
 	h2 {
 		padding: 2rem;
 	}
-
 	.library-song-container {
 		display: flex;
 		align-items: center;
 		padding: 1rem 2rem;
 		cursor: pointer;
+		transition: background 0.5s ease;
 		&:hover {
 			background: rgb(175, 175, 255);
 		}
-
 		img {
 			width: 30%;
 		}
-
 		.song-description {
 			padding-left: 1rem;
-
 			h3 {
 				font-size: 1.25rem;
 			}
