@@ -1,4 +1,4 @@
-import { playAudio } from "../util";
+//import { playAudio } from "../util";
 
 const LibrarySong = ({
 	song,
@@ -11,15 +11,15 @@ const LibrarySong = ({
 	const { cover, name, artist } = song;
 
 	// Events Handlers
-	const songSelectHandler = () => {
-		setCurrentSong(song);
+	const songSelectHandler = async () => {
+		await setCurrentSong(song);
 		// Add active state
 		const newSongs = songs.map((el) => {
 			if (el.id === song.id) return { ...el, active: true };
 			else return { ...el, active: false };
 		});
 		setSongs(newSongs);
-		playAudio(isPlaying, audioRef);
+		if (isPlaying) audioRef.current.play();
 	};
 
 	return (
