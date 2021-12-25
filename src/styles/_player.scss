@@ -39,11 +39,20 @@
 input[type="range"] {
 	outline: none;
 }
+// Style input in Chrome/Edge
 input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: 16px;
 	width: 16px;
 }
+// Style input in Firefox
+input[type="range"]::-moz-slider-thumb {
+	-moz-appearance: none !important;
+	//-webkit-appearance: none !important;
+	height: 16px;
+	width: 16px;
+}
+
 .track {
 	background: lightblue;
 	width: 100%;
